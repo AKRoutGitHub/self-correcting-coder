@@ -47,5 +47,26 @@ if __name__ == "__main__":
         "error": None,
         "iterations": 0
     }
-    
-    app.invoke(initial_state)
+    # app.invoke(initial_state)
+
+    print("🚀 Starting Agentic Loop...\n" + "="*30)
+
+    # .stream() returns an iterator of snapshots as the graph moves through nodes
+    for snapshot in app.stream(initial_state):
+        for node_name, state_update in snapshot.items():
+            print(f"\n📍 CURRENT NODE: {node_name}")
+            print("-" * 20)
+            
+            # Show if an error was captured
+            if "error" in state_update and state_update["error"]:
+                print(f"⚠️ Error Detected: {state_update['error'].strip().splitlines()[-1]}")
+            
+            # Show the iteration count
+            if "iterations" in state_update:
+                print(f"🔢 Iteration: {state_update['iterations']}")
+            
+            # Optional: Show a snippet of the generated code
+            if "code" in state_update and state_update["code"]:
+                first_line = state_update["code"].strip().splitlines()[0]
+                print(f"💻 Code Preview: {first_line}...")
+    print("\n" + "="*30 + "\n✅ Process Finished.")

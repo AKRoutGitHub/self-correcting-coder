@@ -19,7 +19,7 @@ Unlike standard LLM prompts, this agent uses a **State Machine (Directed Acyclic
 
 1.  **Clone the Repository:**
     ```bash
-    git clone <your-repo-url>
+    git clone https://github.com/AKRoutGitHub/self-correcting-coder-python-one-.git
     cd self-correcting-coder
     ```
 
